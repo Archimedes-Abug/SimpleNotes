@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     Button newButton,saveButton,openButton;
     EditText text;
 
+    /*
+    function Name: onCreate - a call-back function.  Included in the Activity life cycle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
         text=(EditText)findViewById(R.id.text);
     }
 
+    /*
+        function Name: readItems - Should have been used for reading from disk
+        comments: Never used
+     */
+
     private void readItems(String fileName) {
         File filesDir = getFilesDir();
         File todoFile = new File(filesDir, fileName+".txt");
@@ -50,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG);
         }
     }
-
+/*
+    function Name: writeItems - Should have been used for writing in disk
+    comments: Never used
+ */
     private void writeItems(String fileName) {
         File filesDir = getFilesDir();
         File todoFile = new File(filesDir, fileName+".txt");
@@ -61,7 +72,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG);
         }
     }
-
+/*
+    function Name: writeToFile
+    comments: Used to Save the text in a .txt file.  OutputStreamWriter is much more straight forward than FileUtils
+ */
     private void writeToFile(String fileName, String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName + ".txt", Context.MODE_PRIVATE));
@@ -73,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    function Name: readFromFile
+    comments: Used to read file from disk and return the String(text).
+    Used InputStreamReader, BufferedReader... these classes are classics and are tested
+     */
     private String readFromFile(String filename, Context context) {
 
         String ret = "";
@@ -103,7 +122,10 @@ public class MainActivity extends AppCompatActivity {
         return ret;
     }
 
-
+/*
+    function Name: buttonAction - declared in activity_main.xml as an OnClick action.
+    comments - Tried several things for saving and reading (visible in the comment inside the code)
+ */
     public void buttonAction(View v) {
         final EditText fileName=new EditText(this);
         AlertDialog.Builder ad=new AlertDialog.Builder(this);
